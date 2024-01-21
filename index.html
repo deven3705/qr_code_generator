@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/747/747639.png">
+     <link rel="stylesheet" href="style.css"> 
+
+</head>
+<body>
+    <script type="text/javascript">
+        function QR()
+        {
+            var gapi="https://chart.googleapis.com/chart?chf=bg,s,65432100&cht=qr&chs=";
+            //chf=bg,s,65432100  -> remove white part around qr code
+            var myimg=document.getElementById("img");
+            var mytext=document.getElementById("qrtext").value;
+            var mysize=document.getElementById("size").value;
+
+            if(mytext!=="" && mysize=="150")
+            {
+                myimg.src=gapi+"150x150"+"&chl="+mytext;
+                // https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=hello
+            }
+
+            else if (mytext!=="" && mysize=="225")
+            {
+                myimg.src=gapi+"225x225"+"&chl="+mytext;
+            }
+
+            else if (mytext!=="" && mysize=="300")
+            {
+                myimg.src=gapi+"300x300"+"&chl="+mytext;
+            }
+
+            else
+            {
+                alert("Please Enter Text");
+            }
+        
+        }
+    </script>
+    <div class="grid">
+        <h2 align="center">Qr Code Generator</h2>
+        <center>
+        <img src="" id="img"></center>
+
+        <select id="size">
+            <option value="150">150 X 150</option>
+            <option value="225" selected>225 X 225</option>
+            <option value="300">300 X 300</option>
+        </select>
+        <br><br>
+        <textarea placeholder="Enter Your Text" id="qrtext"></textarea>
+        <br><br>
+        <input type="submit" value="Generate" onclick="QR()">
+        
+    </div>
+</body>
+</html>
